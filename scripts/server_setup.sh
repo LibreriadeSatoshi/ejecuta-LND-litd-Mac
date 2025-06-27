@@ -1,4 +1,4 @@
-bash#!/bin/bash
+#!/bin/bash
 # Script de configuración de servidor para macOS
 # Salir en caso de error
 set -e
@@ -14,6 +14,11 @@ NEW_USER="serveruser"
 USER_HOME="/Users/$NEW_USER"
 SSH_DIR="$USER_HOME/.ssh"
 AUTHORIZED_KEYS="$SSH_DIR/authorized_keys"
+
+if id -u $UNIQUE_ID >/dev/null 2>&1; then
+  echo "UID $UNIQUE_ID ya está en uso. Por favor, elige otro."
+  exit 1
+fi
 UNIQUE_ID=1001
 
 echo "🚀 Iniciando configuración del servidor macOS..."
@@ -147,7 +152,7 @@ echo "  • Autenticación por contraseña deshabilitada"
 echo "  • Claves SSH configuradas"
 echo ""
 echo "🔗 Para conectarte al servidor:"
-echo "  ssh $NEW_USER@$(hostname -I | awk '{print $1}' || echo 'TU_IP_DEL_SERVIDOR')"
+echo "  ssh $NEW_USER@$(ipconfig getifaddr en0)"
 echo ""
 
 cat <<"EOF"
