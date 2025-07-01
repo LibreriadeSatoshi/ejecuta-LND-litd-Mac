@@ -1,4 +1,4 @@
-# Ejecuta Litd
+# Work in Progress Ejecuta Litd en Mac 
 
 ![Alt text](litd.png "Ejecuta Litd")
 
